@@ -9,6 +9,10 @@ final GoRouter router = GoRouter(
       path: '/',
       builder: (context, state) => const WelcomePage(),
     ),
+    GoRoute(
+      path: '/login',
+      builder: (context, state) => const LoginPage(),
+    ),
 
   ],
 );
