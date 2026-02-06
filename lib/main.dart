@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:remotely_store/shared/widgets/custom_button.dart';
+import 'core/routing/router.dart';
 import 'core/theme/app_theme.dart';
 
 void main() {
@@ -11,34 +11,12 @@ class RemotelyStoreApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Remotely Store',
-
+      routerConfig: router,
       debugShowCheckedModeBanner: false,
-
       theme: AppTheme.lightTheme,
-
-      home: const TempHomeScreen(),
     );
   }
 }
 
-class TempHomeScreen extends StatelessWidget {
-  const TempHomeScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Remotely Store"),
-      ),
-      body: Center(
-        child: PrimaryButton(
-          text: "Click Me",
-          isLoading: false,
-          onPressed: (){},
-        ),
-      ),
-    );
-  }
-}
