@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'core/routing/router.dart';
 import 'core/theme/app_theme.dart';
 
-void main() {
+void main() async{
   runApp(const RemotelyStoreApp());
 }
 
