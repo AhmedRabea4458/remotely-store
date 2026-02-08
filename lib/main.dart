@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:remotely_store/cart/presentation/screens/cartscreen/cart_screen.dart';
+import 'package:remotely_store/cart/presentation/screens/checkoutscreen/checkout_screen.dart';
 import 'package:remotely_store/shared/widgets/custom_button.dart';
 import 'core/theme/app_theme.dart';
 
@@ -18,7 +20,7 @@ class RemotelyStoreApp extends StatelessWidget {
 
       theme: AppTheme.lightTheme,
 
-      home: const TempHomeScreen(),
+      home: CheckoutScreen(),
     );
   }
 }
@@ -29,14 +31,12 @@ class TempHomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Remotely Store"),
-      ),
+      appBar: AppBar(title: const Text("Remotely Store")),
       body: Center(
         child: PrimaryButton(
           text: "Click Me",
           isLoading: false,
-          onPressed: (){},
+          onPressed: () {},
         ),
       ),
     );
