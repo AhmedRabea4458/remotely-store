@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:remotely_store/core/services/firbase_service.dart';
 import 'core/routing/router.dart';
 import 'core/theme/app_theme.dart';
 
 void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await FirebaseService.init();
   runApp(const RemotelyStoreApp());
 }
 
