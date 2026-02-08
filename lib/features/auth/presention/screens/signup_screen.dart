@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
@@ -9,11 +10,13 @@ import '../../../../shared/widgets/custom_button.dart';
 import '../widgets/custom_social_button.dart';
 import '../widgets/custom_text_feild.dart';
 import '../widgets/lable_feild.dart';
+import '../widgets/phone_text_field.dart';
 
-class LoginPage extends StatelessWidget {
-  LoginPage({super.key});
+class SignupPage extends StatelessWidget {
+  SignupPage({super.key});
 
   final emailController = TextEditingController();
+  final phoneController = TextEditingController();
   final passwordController = TextEditingController();
 
   @override
@@ -37,7 +40,7 @@ class LoginPage extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Gap(size.height * 0.20),
+                      Gap(size.height * 0.18),
 
                       Text(
                         "HI FELLA 👋",
@@ -49,17 +52,31 @@ class LoginPage extends StatelessWidget {
 
                       const Gap(4),
 
-                      Text(
-                        "Welcome Back",
-                        style: AppTextStyles.headline.copyWith(
-                          fontSize: size.width * 0.07,
+                      RichText(
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                              text: "Welcome to ",
+                              style: AppTextStyles.headline.copyWith(
+                                fontSize: size.width * 0.07,
+                                color: Colors.black,
+                              ),
+                            ),
+                            TextSpan(
+                              text: "Remotely.io",
+                              style: AppTextStyles.headline.copyWith(
+                                fontSize: size.width * 0.07,
+                                color: AppColors.primary,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
 
                       Gap(size.height * 0.05),
 
                       CustomSocialButton(
-                        text: "Login with Google",
+                        text: "Sign Up with Google",
                         assetIcon: AppAssets.google,
                         onPressed: () {},
                       ),
@@ -67,7 +84,7 @@ class LoginPage extends StatelessWidget {
                       const Gap(16),
 
                       CustomSocialButton(
-                        text: "Login with Facebook",
+                        text: "Sign Up with Facebook",
                         assetIcon: AppAssets.facebook,
                         onPressed: () {},
                       ),
@@ -91,6 +108,15 @@ class LoginPage extends StatelessWidget {
                       const Gap(16),
 
                       LabeledField(
+                        label: "Phone number",
+                        field: PhoneTextField(
+                          controller: phoneController,
+                        ),
+                      ),
+
+                      const Gap(16),
+
+                      LabeledField(
                         label: "Password",
                         field: CustomTextField(
                           hint: "Password",
@@ -102,30 +128,27 @@ class LoginPage extends StatelessWidget {
                       Gap(size.height * 0.04),
 
                       PrimaryButton(
-                        text: "Login",
+                        text: "Sign Up",
                         onPressed: () {},
                       ),
 
                       const Spacer(),
 
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          TextButton(
-                            onPressed: () {},
-                            child: Text(
-                              "Forgot password?",
-                              style: AppTextStyles.body.copyWith(
-                                color: AppColors.grayDeeper,
-                              ),
+                          Text(
+                            "Already have an account?",
+                            style: AppTextStyles.body.copyWith(
+                              color: AppColors.grayDeeper,
                             ),
                           ),
                           TextButton(
                             onPressed: () {
-                              context.push('/signup');
+                              context.push('/login');
                             },
                             child: Text(
-                              "Sign Up",
+                              "Login",
                               style: AppTextStyles.body.copyWith(
                                 color: AppColors.secondary,
                                 fontWeight: FontWeight.w800,
@@ -147,4 +170,3 @@ class LoginPage extends StatelessWidget {
     );
   }
 }
-
