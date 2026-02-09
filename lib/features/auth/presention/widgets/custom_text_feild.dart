@@ -9,13 +9,13 @@ class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
   final bool isPassword;
   final TextInputType keyboardType;
-
+  final String? Function(String?)? validator;
   const CustomTextField({
     super.key,
     required this.hint,
     required this.controller,
     this.isPassword = false,
-    this.keyboardType = TextInputType.text,
+    this.keyboardType = TextInputType.text, this.validator,
   });
 
   @override
@@ -23,6 +23,7 @@ class CustomTextField extends StatelessWidget {
     return SizedBox(
       height: 56,
       child: TextFormField(
+        validator:validator ,
         controller: controller,
         obscureText: isPassword,
         keyboardType: keyboardType,

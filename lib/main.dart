@@ -1,7 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:remotely_store/core/services/firbase_service.dart';
 import 'core/routing/router.dart';
 import 'core/theme/app_theme.dart';
+import 'features/auth/data/datasources/firebase_auth_datasource.dart';
+import 'features/auth/data/repositories/auth_repository.dart';
+import 'features/auth/presention/view_model/auth_cubit.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,11 +20,22 @@ class RemotelyStoreApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
+    return BlocProvider(
+        create: (_) => AuthCubit(
+      AuthRepository(
+        FirebaseAuthDataSource(
+          auth: FirebaseAuth.instance,
+          firestore: FirebaseFirestore.instance,
+        ),
+      ),
+    ),
+
+    child:MaterialApp.router(
       title: 'Remotely Store',
       routerConfig: router,
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
+      )
     );
   }
 }

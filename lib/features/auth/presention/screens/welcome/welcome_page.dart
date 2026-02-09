@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:remotely_store/core/constants/app_assets.dart';
 import 'package:remotely_store/shared/widgets/custom_button.dart';
 
-import '../../../../core/theme/app_colors.dart';
-import '../../../../core/theme/app_text_style.dart';
+import '../../../../../core/theme/app_colors.dart';
+import '../../../../../core/theme/app_text_style.dart';
+import '../../view_model/auth_cubit.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
@@ -68,7 +70,9 @@ class WelcomePage extends StatelessWidget {
 
                 PrimaryButton(
                   text: "Browse Shop",
-                  onPressed: () {},
+                  onPressed: () {
+                    context.push('/');
+                  },
                   backgroundColor: AppColors.primary,
                   textColor: AppColors.black,
                 ),
