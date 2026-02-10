@@ -22,3 +22,5 @@ final class CartError extends CartState {
 
   CartError({required this.message});
 }
+
+final class SetStateUI extends CartState {}

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:remotely_store/cart/presentation/cubit/cart_cubit.dart';
+import 'package:remotely_store/cart/presentation/screens/cartscreen/widgets/price_row.dart';
 import 'package:remotely_store/core/theme/app_colors.dart';
-import 'package:remotely_store/core/theme/app_text_style.dart';
+
 import 'package:remotely_store/shared/widgets/custom_button.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -18,7 +19,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 200,
+      height: 230,
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(25)),
       padding: EdgeInsets.all(20),
       child: Column(
@@ -28,10 +29,13 @@ class CustomBottomNavigationBar extends StatelessWidget {
           BlocBuilder<CartCubit, CartState>(
             builder: (context, state) {
               final cubit = BlocProvider.of<CartCubit>(context);
-              return PriceRow(
-                title: "Total",
-                colorValue: AppColors.secondary,
-                value: cubit.costTotal,
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 2),
+                child: PriceRow(
+                  title: "Total",
+                  colorValue: AppColors.secondary,
+                  value: cubit.costTotal,
+                ),
               );
             },
           ),
@@ -49,53 +53,6 @@ class CustomBottomNavigationBar extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-}
-
-class PriceRow extends StatelessWidget {
-  final String title;
-  final double value;
-  final Color? colorTitle;
-  final Color? colorValue;
-  final FontWeight? fontWeight;
-
-  final double? fontSizeValue;
-  final double? fontSizeTitle;
-
-  const PriceRow({
-    super.key,
-    required this.title,
-    required this.value,
-    this.colorTitle,
-    this.colorValue,
-    this.fontWeight,
-    this.fontSizeValue,
-    this.fontSizeTitle,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          title,
-          style: AppTextStyles.headline.copyWith(
-            color: colorTitle,
-            fontWeight: fontWeight,
-            fontSize: fontSizeTitle,
-          ),
-        ),
-        Text(
-          "\$$value",
-          style: AppTextStyles.headline.copyWith(
-            color: colorValue,
-            fontWeight: fontWeight,
-            fontSize: fontSizeValue,
-          ),
-        ),
-      ],
     );
   }
 }

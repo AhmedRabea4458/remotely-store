@@ -8,6 +8,7 @@ class CartCubit extends Cubit<CartState> {
   CartCubit() : super(CartInitial());
   double _shippingCost = 0;
   double subTotal = 0;
+  int? _indexisSelectedPayment;
   final List<ProductCart> listProductCart = [
     ProductCart(
       id: 1,
@@ -27,28 +28,6 @@ class CartCubit extends Cubit<CartState> {
     ),
     ProductCart(
       id: 3,
-      nameProduct: "Logitech MX Master 2S Wireless Mouse",
-      pirceOneProduct: 92,
-      image: "https://m.media-amazon.com/images/I/61ni3t1ryQL._AC_SL1500_.jpg",
-      quantityProduct: 1,
-    ),
-    ProductCart(
-      id: 4,
-      nameProduct: "Funiture Manila Adjustable Office Chair",
-      image:
-          "https://rutoofficefurniture.com/wp-content/uploads/2023/03/RC-301-H.jpg",
-      quantityProduct: 1,
-      pirceOneProduct: 87.00,
-    ),
-    ProductCart(
-      id: 5,
-      nameProduct: "JBL Link Music Wifi Speaker",
-      pirceOneProduct: 69,
-      quantityProduct: 1,
-      image: "https://m.media-amazon.com/images/I/51OlNk4di0L._AC_.jpg",
-    ),
-    ProductCart(
-      id: 6,
       nameProduct: "Logitech MX Master 2S Wireless Mouse",
       pirceOneProduct: 92,
       image: "https://m.media-amazon.com/images/I/61ni3t1ryQL._AC_SL1500_.jpg",
@@ -97,9 +76,9 @@ class CartCubit extends Cubit<CartState> {
 
   double get costSubtotal {
     double total = 0;
-    listProductCart.forEach((action) {
-      total += action.quantityProduct * action.pirceOneProduct;
-    });
+    for (var element in listProductCart) {
+      total += element.quantityProduct * element.pirceOneProduct;
+    }
     return total;
   }
 
@@ -115,5 +94,14 @@ class CartCubit extends Cubit<CartState> {
 
   double get getShippingCost {
     return _shippingCost;
+  }
+
+  set setIndexisSelectedPayment(int index) {
+    _indexisSelectedPayment = index;
+    emit(SetStateUI());
+  }
+
+  int? get getIndexisSelectedPayment {
+    return _indexisSelectedPayment;
   }
 }

@@ -10,6 +10,7 @@ class PaymentMethodTile extends StatelessWidget {
     required this.bankName,
     required this.lastDigits,
     required this.isSelected,
+    required this.onTap,
   });
   final String pathImagesFolder = "assets/images/";
   final String nameImage;
@@ -17,56 +18,64 @@ class PaymentMethodTile extends StatelessWidget {
   final String lastDigits;
 
   final bool isSelected;
-
+  final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 65,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-        border: Border.all(
-          color: (isSelected) ? AppColors.primary : AppColors.grayMedium,
-          width: (isSelected) ? 3 : 1.5,
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        height: 65,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          border: Border.all(
+            color: (isSelected) ? AppColors.primary : AppColors.grayMedium,
+            width: (isSelected) ? 3 : 1.5,
+          ),
         ),
-      ),
-      child: Row(
-        children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(20, 0, 15, 0),
-            child: SizedBox(
-              height: 20,
-              width: 50,
-              child: Image.asset("$pathImagesFolder$nameImage"),
+        child: Row(
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 0, 15, 0),
+              child: SizedBox(
+                height: 20,
+                width: 50,
+                child: Image.asset("$pathImagesFolder$nameImage"),
+              ),
             ),
-          ),
-          Text(bankName, style: AppTextStyles.headline.copyWith(fontSize: 17)),
-          SizedBox(width: 12),
-          CardDot(radius: 3, backgroundColor: AppColors.grayMedium),
-          CardDot(radius: 3, backgroundColor: AppColors.grayMedium),
+            Text(
+              bankName,
+              style: AppTextStyles.headline.copyWith(fontSize: 17),
+            ),
+            SizedBox(width: 12),
+            CardDot(radius: 3, backgroundColor: AppColors.grayMedium),
+            CardDot(radius: 3, backgroundColor: AppColors.grayMedium),
 
-          CardDot(radius: 3, backgroundColor: AppColors.grayMedium),
+            CardDot(radius: 3, backgroundColor: AppColors.grayMedium),
 
-          CardDot(radius: 3, backgroundColor: AppColors.grayMedium),
+            CardDot(radius: 3, backgroundColor: AppColors.grayMedium),
 
-          SizedBox(width: 15),
-          Text(lastDigits, style: AppTextStyles.body),
-          Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(right: 7.0),
-                  child: CardDot(
-                    radius: 10,
-                    backgroundColor:
-                        (isSelected) ? AppColors.primary : AppColors.background,
+            SizedBox(width: 15),
+            Text(lastDigits, style: AppTextStyles.body),
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 7.0),
+                    child: CardDot(
+                      radius: 10,
+                      backgroundColor:
+                          (isSelected)
+                              ? AppColors.primary
+                              : AppColors.background,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

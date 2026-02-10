@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:remotely_store/cart/presentation/cubit/cart_cubit.dart';
 import 'package:remotely_store/cart/presentation/screens/cartscreen/widgets/cart_header_row.dart';
@@ -17,7 +18,9 @@ class CartScreen extends StatelessWidget {
       child: Scaffold(
         bottomNavigationBar: CustomBottomNavigationBar(
           textPrimaryButton: 'Proceed to Checkout',
-          onPressedPrimaryButton: () {},
+          onPressedPrimaryButton: () {
+            context.push("/checkout");
+          },
         ),
         body: SafeArea(
           child: Padding(
