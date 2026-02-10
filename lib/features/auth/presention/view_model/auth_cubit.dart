@@ -73,6 +73,9 @@ class AuthCubit extends Cubit<AuthState> {
     await repository.logout();
     emit(Unauthenticated());
   }
+  void continueAsGuest() {
+    emit(Guest());
+  }
 
   @override
   Future<void> close() {

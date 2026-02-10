@@ -12,14 +12,15 @@ class LoginForm extends StatelessWidget {
   final TextEditingController passwordController;
   final bool isLoading;
   final VoidCallback onSubmit;
-
+  final bool isPasswordVisible;
+  final VoidCallback onTogglePassword;
   const LoginForm({
     super.key,
     required this.formKey,
     required this.emailController,
     required this.passwordController,
     required this.isLoading,
-    required this.onSubmit,
+    required this.onSubmit, required this.isPasswordVisible, required this.onTogglePassword,
   });
 
   @override
@@ -46,6 +47,8 @@ class LoginForm extends StatelessWidget {
             field: CustomTextField(
               hint: "Password",
               controller: passwordController,
+              isPasswordVisible: isPasswordVisible,
+              onTogglePassword: onTogglePassword,
               isPassword: true,
               validator: (p0) => Validations.validatePassword(
             context,

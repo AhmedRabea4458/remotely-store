@@ -1,7 +1,5 @@
 class AppRegExp {
-  static bool isNameValid(String name) {
-    return RegExp(r"^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$").hasMatch(name);
-  }
+
 
   static bool isEmailValid(String email) {
     return RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(email);
@@ -11,17 +9,7 @@ class AppRegExp {
     return RegExp(r"^(?:[+0]9)?[0-9]{10}$").hasMatch(phoneNumber);
   }
 
-  static bool isOTPValid(String otp) {
-    return RegExp(r"^[0-9]{6}$").hasMatch(otp);
-  }
 
-  static bool isNationalIDValid(String nationalID) {
-    return RegExp(r"^[0-9]{10}$").hasMatch(nationalID);
-  }
-
-  static bool isCardCVVValid(String cardCVV) {
-    return RegExp(r"^[0-9]{3,4}$").hasMatch(cardCVV);
-  }
 
   static bool isPasswordValid(String password) {
     return hasLowerCase(password) &&

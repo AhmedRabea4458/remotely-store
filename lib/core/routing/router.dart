@@ -29,35 +29,34 @@ final GoRouter router = GoRouter(
   ],
     redirect: (context, state) {
       final authState = context.read<AuthCubit>().state;
-      final loggedIn = authState is Authenticated;
+
+      final isLoggedIn = authState is Authenticated;
+      final isGuest = authState is Guest;
 
       final location = state.matchedLocation;
 
-      // الصفحات المفتوحة بدون تسجيل
       final publicRoutes = ['/welcome', '/login', '/signup'];
 
       final isPublicRoute = publicRoutes.contains(location);
 
-      // لو مش مسجل
-      if (!loggedIn) {
-        // يسمح فقط بالتنقل داخل الصفحات العامة
-        if (isPublicRoute) return null;
+      // لو Guest → نعامله زي المستخدم المسجل
+      if (isGuest) {
+        if (isPublicRoute) return '/';
+        return null;
+      }
 
-        // أي محاولة لفتح صفحة خاصة → يرجع welcome
+      if (!isLoggedIn) {
+        if (isPublicRoute) return null;
         return '/welcome';
       }
 
-      // لو مسجل دخول
-      if (loggedIn) {
-        // لو رايح أي صفحة من صفحات التسجيل → رجّعه للـ home
-        if (isPublicRoute) return '/';
-
-        // غير كدا خليه يكمل عادي
-        return null;
+      if (isLoggedIn && isPublicRoute) {
+        return '/';
       }
 
       return null;
     }
+
 
 
 );

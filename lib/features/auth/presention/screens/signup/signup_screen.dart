@@ -4,8 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:remotely_store/features/auth/presention/widgets/social_auth_section.dart';
-
-import '../../../../../core/constants/app_assets.dart';
 import '../../../../../core/theme/app_colors.dart';
 import '../../../../../core/theme/app_text_style.dart';
 import '../../view_model/auth_cubit.dart';
@@ -25,6 +23,7 @@ class _SignupPageState extends State<SignupPage> {
   final emailController = TextEditingController();
   final phoneController = TextEditingController();
   final passwordController = TextEditingController();
+  bool isPasswordVisible = false;
 
   @override
   void dispose() {
@@ -108,6 +107,12 @@ class _SignupPageState extends State<SignupPage> {
                     emailController: emailController,
                     phoneController: phoneController,
                     passwordController: passwordController,
+                    isPasswordVisible: isPasswordVisible,
+                    onTogglePassword: (){
+                      setState(() {
+                        isPasswordVisible = !isPasswordVisible;
+                      });
+                    },
                     onSubmit: () {
                       if (_formKey.currentState!.validate()) {
                         context.read<AuthCubit>().register(

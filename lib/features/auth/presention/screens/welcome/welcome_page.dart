@@ -14,86 +14,110 @@ class WelcomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          // Background Image
-          SizedBox(
-            width: double.infinity,
-            height: double.infinity,
-            child: Image.asset(
-              AppAssets.onBoard,
-              fit: BoxFit.cover,
+    final size = MediaQuery.of(context).size;
+
+    return BlocListener<AuthCubit, AuthState>(
+      listener: (context, state) {
+        if (state is Guest) {
+          context.go('/');
+        }
+      },
+      child: Scaffold(
+        body: Stack(
+          children: [
+            SizedBox(
+              width: size.width,
+              height: size.height,
+              child: Image.asset(
+                AppAssets.onBoard,
+                fit: BoxFit.cover,
+              ),
             ),
-          ),
 
-          // Dark overlay for better text visibility
-          Container(
-            color: Colors.black.withOpacity(0.4),
-          ),
-
-          // Content
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-               const Spacer(),
-                 Text(
-                  "WELCOME",
-                  style: AppTextStyles.body.copyWith(
-                    fontWeight: FontWeight.w900,
-                    color: AppColors.primary
-                  ),
-                ),
-                 Gap( 8),
-
-                 Text(
-                  "Remotely.io",
-                  style: AppTextStyles.body.copyWith(
-                    fontSize: 42,
-                    color: AppColors.white
-                  ),
-                ),
-
-                 Gap(2),
-
-                 Text(
-                  "We serve you with the best gadgets for your home workspace",
-                  style: AppTextStyles.body.copyWith(
-                    fontWeight: FontWeight.w800,
-                    color: Colors.white
-                  ),
-                ),
-
-                 Gap( 27),
-
-                PrimaryButton(
-                  text: "Browse Shop",
-                  onPressed: () {
-                    context.push('/');
-                  },
-                  backgroundColor: AppColors.primary,
-                  textColor: AppColors.black,
-                ),
-
-                Gap(1),
-
-                // Login Button
-                PrimaryButton(
-                  text: "Log In",
-                  onPressed: () {
-                    context.push('/login');
-                  },
-                  backgroundColor: Colors.white.withOpacity(0.0),
-                  textColor: Colors.white,
-                ),
-
-                 Gap( 40),
-              ],
+            // Dark overlay
+            Container(
+              width: size.width,
+              height: size.height,
+              color: Colors.black.withOpacity(0.4),
             ),
-          )
-        ],
+
+            SafeArea(
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: size.width * 0.06,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Spacer(),
+
+                    Text(
+                      "WELCOME",
+                      style: AppTextStyles.body.copyWith(
+                        fontWeight: FontWeight.w900,
+                        color: AppColors.primary,
+                        fontSize: size.width * 0.045,
+                      ),
+                    ),
+
+                    Gap(size.height * 0.01),
+
+                    Text(
+                      "Remotely.io",
+                      style: AppTextStyles.body.copyWith(
+                        fontSize: size.width * 0.10,
+                        color: AppColors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+
+                    Gap(size.height * 0.005),
+
+                    Text(
+                      "We serve you with the best gadgets for your home workspace",
+                      style: AppTextStyles.body.copyWith(
+                        fontWeight: FontWeight.w800,
+                        color: Colors.white,
+                        fontSize: size.width * 0.035,
+                      ),
+                    ),
+
+                    Gap(size.height * 0.04),
+
+                    SizedBox(
+                      width: double.infinity,
+                      child: PrimaryButton(
+                        text: "Browse Shop",
+                        onPressed: () {
+                          context.read<AuthCubit>().continueAsGuest();
+                        },
+                        backgroundColor: AppColors.primary,
+                        textColor: AppColors.black,
+                      ),
+                    ),
+
+                    Gap(size.height * 0.02),
+
+                    SizedBox(
+                      width: double.infinity,
+                      child: PrimaryButton(
+                        text: "Log In",
+                        onPressed: () {
+                          context.push('/login');
+                        },
+                        backgroundColor:
+                        Colors.white.withOpacity(0.0),
+                        textColor: Colors.white,
+                      ),
+                    ),
+
+                    Gap(size.height * 0.06),
+                  ],
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

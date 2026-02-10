@@ -14,13 +14,15 @@ class SignupForm extends StatelessWidget {
   final TextEditingController passwordController;
   final VoidCallback onSubmit;
   final bool? isLoading;
+  final bool isPasswordVisible;
+  final VoidCallback onTogglePassword;
   const SignupForm({
     super.key,
     required this.formKey,
     required this.emailController,
     required this.phoneController,
     required this.passwordController,
-    required this.onSubmit, this.isLoading,
+    required this.onSubmit, this.isLoading, required this.isPasswordVisible, required this.onTogglePassword,
   });
 
   @override
@@ -39,6 +41,7 @@ class SignupForm extends StatelessWidget {
               validator: (p0) => Validations.validateEmail(
                 context,
                 emailController.text,
+
               ),
             ),
           ),
@@ -49,6 +52,7 @@ class SignupForm extends StatelessWidget {
             label: "Phone number",
             field: PhoneTextField(
               controller: phoneController,
+              validator: (p0) =>  Validations.validatePhoneNumber(context, phoneController.text),
             ),
           ),
 
@@ -59,6 +63,8 @@ class SignupForm extends StatelessWidget {
             field: CustomTextField(
               hint: "Password",
               controller: passwordController,
+              isPasswordVisible: isPasswordVisible,
+              onTogglePassword: onTogglePassword,
               isPassword: true,
               validator: (p0) => Validations.validatePassword(
                 context,

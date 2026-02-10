@@ -7,10 +7,11 @@ import '../../../../../../core/theme/app_text_style.dart';
 
 class PhoneTextField extends StatelessWidget {
   final TextEditingController controller;
-
-  const PhoneTextField({
+  String? Function(String?)? validator;
+   PhoneTextField({
     super.key,
     required this.controller,
+      this.validator,
   });
 
   @override
@@ -38,8 +39,9 @@ class PhoneTextField extends StatelessWidget {
         Expanded(
           child: SizedBox(
             height: 56,
-            child: TextField(
+            child: TextFormField(
               controller: controller,
+              validator: validator,
               keyboardType: TextInputType.phone,
               style: AppTextStyles.body,
               decoration: InputDecoration(

@@ -21,6 +21,7 @@ class _LoginPageState extends State<LoginPage> {
 
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  bool isPasswordVisible = false;
 
   @override
   void dispose() {
@@ -70,6 +71,12 @@ class _LoginPageState extends State<LoginPage> {
                   emailController: emailController,
                   passwordController: passwordController,
                   isLoading: state is AuthLoading,
+                  isPasswordVisible: isPasswordVisible,
+                  onTogglePassword: (){
+                    setState(() {
+                      isPasswordVisible = !isPasswordVisible;
+                    });
+                  },
                   onSubmit: () {
                     if (_formKey.currentState!.validate()) {
                       context.read<AuthCubit>().login(

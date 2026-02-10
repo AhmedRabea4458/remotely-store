@@ -9,13 +9,15 @@ class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
   final bool isPassword;
   final TextInputType keyboardType;
+  final bool? isPasswordVisible;
+  final VoidCallback? onTogglePassword;
   final String? Function(String?)? validator;
   const CustomTextField({
     super.key,
     required this.hint,
     required this.controller,
     this.isPassword = false,
-    this.keyboardType = TextInputType.text, this.validator,
+    this.keyboardType = TextInputType.text, this.validator,  this.isPasswordVisible, this.onTogglePassword,
   });
 
   @override
@@ -25,7 +27,9 @@ class CustomTextField extends StatelessWidget {
       child: TextFormField(
         validator:validator ,
         controller: controller,
-        obscureText: isPassword,
+        obscureText: isPassword
+            ? !(isPasswordVisible ?? false)
+            : false,
         keyboardType: keyboardType,
         style: AppTextStyles.body,
         decoration: InputDecoration(
@@ -44,9 +48,13 @@ class CustomTextField extends StatelessWidget {
             vertical: 16,
           ),
           suffixIcon: isPassword
-              ? const Icon(
-            Icons.visibility_off_outlined,
-            color: AppColors.grayLight,
+              ? IconButton(
+            icon: Icon(
+              isPasswordVisible?? false
+                  ? Icons.visibility_outlined
+                  : Icons.visibility_off_outlined,
+            ),
+            onPressed: onTogglePassword,
           )
               : null,
         ),
