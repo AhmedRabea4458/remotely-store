@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "227863687017",
+    "project_id": "remotely-store",
+    "storage_bucket": "remotely-store.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:227863687017:android:fa15d1dbbfac2e8cdf17f8",
+        "android_client_info": {
+          "package_name": "com.example.remotely_store"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDfvKcUZO5UTPDLn4PFKKmbNCBdBkQ8MTc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
