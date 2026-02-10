@@ -13,7 +13,7 @@ class AppColors {
 
   // Gray Shades
   static const Color grayLight = Color(0xFFF2F2F2);
-  static const Color grayMedium = Color(0xFFD9D9D9);
+  static const Color grayDeeper = Color(0xFF8A8B7A);
 
 
 
