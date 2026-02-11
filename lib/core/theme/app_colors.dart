@@ -12,12 +12,17 @@ class AppColors {
   static const Color textSecondary = Color(0xFF6B7280);
 
   // Gray Shades
-  static const Color grayLight = Color(0xFFF2F2F2);
+  static const Color lightestGrey = Color(0xFFF2F2F2);
+  static const Color lightGrey = Color(0xffDDDDDB);
   static const Color grayMedium = Color(0xFFD9D9D9);
-
-
+  static const Color whiteShade = Color(0xffF4F5F7);
+  static const Color deepGrey = Color(0xffA6A798);
+  static const Color deepestGrey = Color(0xff8A8B7A);
 
   // Other
   static const Color white = Colors.white;
   static const Color black = Colors.black;
+  static const Color componentBGColor = Color(0xff0A0B02);
+  static const Color deepGreen = Color(0xFF1B3D2F);
+  static const Color lightestGreen = Color(0xffF5FAF8);
 }

@@ -8,35 +8,34 @@ class PrimaryButton extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
   final bool isLoading;
-
+  final double height;
+  final double width;
   const PrimaryButton({
     super.key,
     required this.text,
     required this.onPressed,
     this.isLoading = false,
+    this.height = 50,
+    this.width = double.infinity,
   });
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      height: 50,
-      child: ElevatedButton(
-        onPressed: isLoading ? null : onPressed,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.primary,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
-          ),
+    return GestureDetector(
+      onTap: isLoading ? null : onPressed,
+      child: Container(
+        alignment: Alignment.center,
+        height: height,
+        width: width,
+        decoration: BoxDecoration(
+          color: AppColors.primary,
+          borderRadius: BorderRadius.circular(8),
         ),
-        child: isLoading
-            ? const CupertinoActivityIndicator(
-          color: AppColors.black,
-        )
-            : Text(
-          text,
-          style:AppTextStyles.body
-        ),
+
+        child:
+            isLoading
+                ? const CupertinoActivityIndicator(color: AppColors.black)
+                : Text(text, style: AppTextStyles.body),
       ),
     );
   }
