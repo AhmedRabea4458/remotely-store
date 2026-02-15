@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:remotely_store/core/routing/router.dart';
-
+import 'core/routing/router.dart';
 import 'core/theme/app_theme.dart';
 
 void main() async {
