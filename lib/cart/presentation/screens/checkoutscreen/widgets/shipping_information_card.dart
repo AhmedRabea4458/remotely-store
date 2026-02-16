@@ -24,7 +24,7 @@ class ShippingInformationCard extends StatelessWidget {
             'SHIPPING INFORMATION',
             style: TextStyle(
               fontSize: 12,
-              color: AppColors.grayMedium,
+              color: AppColors.grayDeeper,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -48,7 +48,7 @@ class ShippingInformationCard extends StatelessWidget {
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 6),
-          Text('(480) 555-0103', style: TextStyle(color: AppColors.grayMedium)),
+          Text('(480) 555-0103', style: TextStyle(color: AppColors.grayDeeper)),
         ],
       ),
     );

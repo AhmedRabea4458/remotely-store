@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:remotely_store/cart/data/models/product_cart_model.dart';
+import 'package:remotely_store/cart/data/repositories/repositories_by_cart.dart';
 
 part 'cart_state.dart';
 
@@ -9,6 +10,7 @@ class CartCubit extends Cubit<CartState> {
   double _shippingCost = 0;
   double subTotal = 0;
   int? _indexisSelectedPayment;
+  RepositoriesByCart repositoriesByCart = RepositoriesByCart();
   final List<ProductCart> listProductCart = [
     ProductCart(
       id: 1,
@@ -16,20 +18,20 @@ class CartCubit extends Cubit<CartState> {
       image:
           "https://rutoofficefurniture.com/wp-content/uploads/2023/03/RC-301-H.jpg",
       quantityProduct: 1,
-      pirceOneProduct: 87.00,
+      priceOneProduct: 87.00,
     ),
 
     ProductCart(
       id: 2,
       nameProduct: "JBL Link Music Wifi Speaker",
-      pirceOneProduct: 69,
+      priceOneProduct: 69,
       quantityProduct: 1,
       image: "https://m.media-amazon.com/images/I/51OlNk4di0L._AC_.jpg",
     ),
     ProductCart(
       id: 3,
       nameProduct: "Logitech MX Master 2S Wireless Mouse",
-      pirceOneProduct: 92,
+      priceOneProduct: 92,
       image: "https://m.media-amazon.com/images/I/61ni3t1ryQL._AC_SL1500_.jpg",
       quantityProduct: 1,
     ),
@@ -42,6 +44,10 @@ class CartCubit extends Cubit<CartState> {
       emit(CartError(message: "Failed to remove product: $e"));
     }
   }
+
+  // Future<void> addToCart() async {
+  //   await repositoriesByCart.addToCart("CApznGV79XcinceNuun8");
+  // }
 
   decreaseQuantity(ProductCart product) {
     try {
@@ -77,7 +83,7 @@ class CartCubit extends Cubit<CartState> {
   double get costSubtotal {
     double total = 0;
     for (var element in listProductCart) {
-      total += element.quantityProduct * element.pirceOneProduct;
+      total += element.quantityProduct * element.priceOneProduct;
     }
     return total;
   }

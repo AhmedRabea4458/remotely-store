@@ -36,7 +36,7 @@ class CartItemWidget extends StatelessWidget {
                   children: [
                     CartProductInfo(
                       name: product.nameProduct,
-                      price: product.pirceOneProduct,
+                      price: product.priceOneProduct,
                     ),
                     BlocBuilder<CartCubit, CartState>(
                       builder: (context, state) {
@@ -49,6 +49,7 @@ class CartItemWidget extends StatelessWidget {
                               CartQuantitySelector(
                                 onAdd: () {
                                   cubit.increaseQuantity(product);
+                                  // cubit.addToCart();
                                 },
                                 quantity: product.quantityProduct,
                                 onRemove: () {

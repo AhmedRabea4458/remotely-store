@@ -12,9 +12,9 @@ class CustomCircleIconButton extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          border: Border.all(color: AppColors.grayMedium),
+          border: Border.all(color: AppColors.grayDeeper),
         ),
-        child: Icon(iconData, color: AppColors.grayMedium, size: 25),
+        child: Icon(iconData, color: AppColors.grayDeeper, size: 25),
       ),
     );
   }

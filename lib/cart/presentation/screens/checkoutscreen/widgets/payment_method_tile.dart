@@ -28,7 +28,7 @@ class PaymentMethodTile extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
           border: Border.all(
-            color: (isSelected) ? AppColors.primary : AppColors.grayMedium,
+            color: (isSelected) ? AppColors.primary : AppColors.grayDeeper,
             width: (isSelected) ? 3 : 1.5,
           ),
         ),
@@ -47,12 +47,12 @@ class PaymentMethodTile extends StatelessWidget {
               style: AppTextStyles.headline.copyWith(fontSize: 17),
             ),
             SizedBox(width: 12),
-            CardDot(radius: 3, backgroundColor: AppColors.grayMedium),
-            CardDot(radius: 3, backgroundColor: AppColors.grayMedium),
+            CardDot(radius: 3, backgroundColor: AppColors.grayDeeper),
+            CardDot(radius: 3, backgroundColor: AppColors.grayDeeper),
 
-            CardDot(radius: 3, backgroundColor: AppColors.grayMedium),
+            CardDot(radius: 3, backgroundColor: AppColors.grayDeeper),
 
-            CardDot(radius: 3, backgroundColor: AppColors.grayMedium),
+            CardDot(radius: 3, backgroundColor: AppColors.grayDeeper),
 
             SizedBox(width: 15),
             Text(lastDigits, style: AppTextStyles.body),

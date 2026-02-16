@@ -31,8 +31,8 @@ class CheckoutScreen extends StatelessWidget {
                     children: [
                       PriceRow(
                         title: "Subtotal",
-                        colorTitle: AppColors.grayMedium,
-                        colorValue: AppColors.grayMedium,
+                        colorTitle: AppColors.grayDeeper,
+                        colorValue: AppColors.grayDeeper,
                         value: cubit.costSubtotal,
                         fontWeight: FontWeight.w800,
                         fontSizeTitle: 15,
@@ -40,8 +40,8 @@ class CheckoutScreen extends StatelessWidget {
                       ),
                       PriceRow(
                         title: "Shipping cost",
-                        colorTitle: AppColors.grayMedium,
-                        colorValue: AppColors.grayMedium,
+                        colorTitle: AppColors.grayDeeper,
+                        colorValue: AppColors.grayDeeper,
                         value: cubit.getShippingCost,
                         fontWeight: FontWeight.w800,
                         fontSizeTitle: 15,

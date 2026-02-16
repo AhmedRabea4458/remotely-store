@@ -26,7 +26,7 @@ class CartQuantitySelector extends StatelessWidget {
             "$quantity",
             style: AppTextStyles.subTitle.copyWith(
               fontSize: 20,
-              color: AppColors.grayMedium,
+              color: AppColors.grayDeeper,
             ),
           ),
         ),

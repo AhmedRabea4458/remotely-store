@@ -13,16 +13,18 @@ class AllDoneScreen extends StatelessWidget {
         padding: EdgeInsets.fromLTRB(20, 0, 20, 40),
         child: PrimaryButton(text: "Go to Orders", onPressed: () {}),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
-        child: Column(
-          children: [
-            CustomIconButtonBack(),
-            HeaderRow(
-              text: "All Done",
-              mainAxisAlignment: MainAxisAlignment.center,
-            ),
-          ],
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: Column(
+            children: [
+              CustomIconButtonBack(),
+              HeaderRow(
+                text: "All Done",
+                mainAxisAlignment: MainAxisAlignment.center,
+              ),
+            ],
+          ),
         ),
       ),
     );
