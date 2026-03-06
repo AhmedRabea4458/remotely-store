@@ -1,4 +1,4 @@
-class ProductCart {
+class ProductCart  {
   final int id;
   final String nameProduct;
   final double priceOneProduct;

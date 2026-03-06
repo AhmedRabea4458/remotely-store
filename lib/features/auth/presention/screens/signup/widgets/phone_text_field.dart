@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
@@ -8,11 +7,7 @@ import '../../../../../../core/theme/app_text_style.dart';
 class PhoneTextField extends StatelessWidget {
   final TextEditingController controller;
   String? Function(String?)? validator;
-   PhoneTextField({
-    super.key,
-    required this.controller,
-      this.validator,
-  });
+  PhoneTextField({super.key, required this.controller, this.validator});
 
   @override
   Widget build(BuildContext context) {
@@ -28,9 +23,7 @@ class PhoneTextField extends StatelessWidget {
           ),
           child: Text(
             "+20",
-            style: AppTextStyles.body.copyWith(
-              color: AppColors.grayDeeper,
-            ),
+            style: AppTextStyles.body.copyWith(color: AppColors.grayDeeper),
           ),
         ),
 

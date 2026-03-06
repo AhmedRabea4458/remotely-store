@@ -1,8 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:flutter/foundation.dart';
 import '../../../../core/errors/firebase_errors.dart';
 import '../models/user_model.dart';
 import 'auth_remote_datasource.dart';
@@ -12,12 +10,13 @@ class FirebaseAuthDataSource implements AuthRemoteDataSource {
   final FirebaseAuth auth;
   final FirebaseFirestore firestore;
 
-  FirebaseAuthDataSource({
-    required this.auth,
-    required this.firestore,
-  });
+  FirebaseAuthDataSource({required this.auth, required this.firestore});
   @override
-  Future<UserModel?> register(String email,String phone, String password) async {
+  Future<UserModel?> register(
+    String email,
+    String phone,
+    String password,
+  ) async {
     try {
       final userCredential = await auth.createUserWithEmailAndPassword(
         email: email,
@@ -41,17 +40,15 @@ class FirebaseAuthDataSource implements AuthRemoteDataSource {
           .set(userModel.toJson());
 
       return userModel;
-
-    }catch (e) {
+    } catch (e) {
       if (e is FirebaseAuthException) {
         throw Exception(FirebaseErrorMapper.map(e.code));
       }
       throw Exception("Unexpected error occurred");
     }
-
   }
-  @override
 
+  @override
   Future<UserModel?> login(String email, String password) async {
     try {
       final userCredential = await auth.signInWithEmailAndPassword(
@@ -63,41 +60,33 @@ class FirebaseAuthDataSource implements AuthRemoteDataSource {
 
       if (firebaseUser == null) return null;
 
-      final userDoc = await firestore
-          .collection('users')
-          .doc(firebaseUser.uid)
-          .get();
+      final userDoc =
+          await firestore.collection('users').doc(firebaseUser.uid).get();
 
       if (!userDoc.exists) {
         throw Exception("User data not found in Firestore");
       }
 
       return UserModel.fromJson(userDoc.data()!);
-
     } catch (e) {
       if (e is FirebaseAuthException) {
         throw Exception(FirebaseErrorMapper.map(e.code));
       }
       throw Exception("Unexpected error occurred");
     }
-
   }
-
-
 
   @override
   Future<void> logout() async {
     try {
       await auth.signOut();
       await GoogleSignIn().signOut();
-
     } catch (e) {
       if (e is FirebaseAuthException) {
         throw Exception(FirebaseErrorMapper.map(e.code));
       }
       throw Exception("Unexpected error occurred");
     }
-
   }
 
   @override
@@ -112,84 +101,85 @@ class FirebaseAuthDataSource implements AuthRemoteDataSource {
       );
     });
   }
- @override
- @override
- Future<UserModel?> signInWithGoogle() async {
-   try {
-     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
-     if (googleUser == null) return null;
+  @override
+  @override
+  Future<UserModel?> signInWithGoogle() async {
+    try {
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
-     final GoogleSignInAuthentication googleAuth =
-     await googleUser.authentication;
+      if (googleUser == null) return null;
 
-     final credential = GoogleAuthProvider.credential(
-       accessToken: googleAuth.accessToken,
-       idToken: googleAuth.idToken,
-     );
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
 
-     final UserCredential userCredential =
-     await auth.signInWithCredential(credential);
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
 
-     final user = userCredential.user;
+      final UserCredential userCredential = await auth.signInWithCredential(
+        credential,
+      );
 
-     if (user == null) return null;
+      final user = userCredential.user;
 
-     final isNewUser =
-         userCredential.additionalUserInfo?.isNewUser ?? false;
+      if (user == null) return null;
 
-     final userModel = UserModel(
-       uid: user.uid,
-       email: user.email ?? '',
-       name: user.displayName ?? '',
-     );
-   } catch (e) {
-     if (e is FirebaseAuthException) {
-       throw Exception(FirebaseErrorMapper.map(e.code));
-     }
-     throw Exception("Unexpected error occurred");
-   }
- }
-     Future<UserModel?> signInWithFacebook() async {
-       try {
-         final LoginResult result = await FacebookAuth.instance.login();
+      final isNewUser = userCredential.additionalUserInfo?.isNewUser ?? false;
 
-         if (result.status != LoginStatus.success) return null;
-
-         final OAuthCredential credential =
-         FacebookAuthProvider.credential(result.accessToken!.tokenString);
-
-         final userCredential =
-         await FirebaseAuth.instance.signInWithCredential(credential);
-
-         final user = userCredential.user;
-
-         if (user == null) return null;
-
-         final isNewUser =
-             userCredential.additionalUserInfo?.isNewUser ?? false;
-
-         final userModel = UserModel(
-           uid: user.uid,
-           email: user.email ?? '',
-           name: user.displayName ?? '',
-         );
-
-         if (isNewUser) {
-           await firestore
-               .collection('users')
-               .doc(user.uid)
-               .set(userModel.toJson());
-         }
-
-         return userModel;
-       }catch (e) {
+      final userModel = UserModel(
+        uid: user.uid,
+        email: user.email ?? '',
+        name: user.displayName ?? '',
+      );
+    } catch (e) {
       if (e is FirebaseAuthException) {
         throw Exception(FirebaseErrorMapper.map(e.code));
       }
       throw Exception("Unexpected error occurred");
     }
-
   }
 
+  Future<UserModel?> signInWithFacebook() async {
+    try {
+      final LoginResult result = await FacebookAuth.instance.login();
+
+      if (result.status != LoginStatus.success) return null;
+
+      final OAuthCredential credential = FacebookAuthProvider.credential(
+        result.accessToken!.tokenString,
+      );
+
+      final userCredential = await FirebaseAuth.instance.signInWithCredential(
+        credential,
+      );
+
+      final user = userCredential.user;
+
+      if (user == null) return null;
+
+      final isNewUser = userCredential.additionalUserInfo?.isNewUser ?? false;
+
+      final userModel = UserModel(
+        uid: user.uid,
+        email: user.email ?? '',
+        name: user.displayName ?? '',
+      );
+
+      if (isNewUser) {
+        await firestore
+            .collection('users')
+            .doc(user.uid)
+            .set(userModel.toJson());
+      }
+
+      return userModel;
+    } catch (e) {
+      if (e is FirebaseAuthException) {
+        throw Exception(FirebaseErrorMapper.map(e.code));
+      }
+      throw Exception("Unexpected error occurred");
+    }
+  }
 }

@@ -1,10 +1,8 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:remotely_store/features/auth/presention/screens/signup/signup_screen.dart';
 
 import '../../features/auth/presention/screens/login/login_page.dart';
 import '../../features/auth/presention/screens/welcome/welcome_page.dart';
-import '../../features/auth/presention/view_model/auth_cubit.dart';
 import 'package:remotely_store/cart/presentation/screens/alldonescreen/all_done_screen.dart';
 import 'package:remotely_store/cart/presentation/screens/cartscreen/cart_screen.dart';
 import 'package:remotely_store/cart/presentation/screens/checkoutscreen/checkout_screen.dart';

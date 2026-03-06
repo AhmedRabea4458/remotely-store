@@ -45,9 +45,10 @@ class CartCubit extends Cubit<CartState> {
     }
   }
 
-  // Future<void> addToCart() async {
-  //   await repositoriesByCart.addToCart("CApznGV79XcinceNuun8");
-  // }
+  Future<void> addToCart(ProductCart product) async {
+    await repositoriesByCart.addToCart("CApznGV79XcinceNuun8",product);
+    listProductCart.add(product);
+  }
 
   decreaseQuantity(ProductCart product) {
     try {

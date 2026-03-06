@@ -1,14 +1,9 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:remotely_store/cart/data/datasource/data_source.dart';
+import 'package:remotely_store/cart/data/models/product_cart_model.dart';
 
 class RepositoriesByCart {
   DataSource dataSource = DataSource();
-  // addToCart(String userId) {
-  //   dataSource.addToCart(userId, {
-  //     "productName": "Laptop",
-  //     "price": 15000,
-  //     "quantity": 1,
-  //     "createdAt": FieldValue.serverTimestamp(),
-  //   });
-  // }
+  addToCart(String userId, ProductCart product) {
+    dataSource.addToCart(userId, product);
+  }
 }
