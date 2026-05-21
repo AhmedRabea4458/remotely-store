@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:remotely_store/core/constants/app_assets.dart';
 import 'package:remotely_store/core/theme/app_colors.dart';
 import 'package:remotely_store/features/home/presentation/views/widgets/c_icon_button.dart';
@@ -25,7 +26,9 @@ class CAppBar extends StatelessWidget {
         CIconButton(
           imageIconPath: AppAssets.cartIcon,
           borderColor: AppColors.lightGrey,
-          onTap: () {},
+          onTap: () {
+            context.push('/workspace');
+          },
         ),
       ],
     );

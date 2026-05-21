@@ -44,7 +44,8 @@ class VerticalProductCard extends StatelessWidget {
                     ),
                   ),
                   SizedBox(width: 16),
-                  RateWidget(fontColor: AppColors.deepestGrey),
+                  RateWidget
+                    (fontColor: AppColors.grayDeeper),
                 ],
               ),
               Spacer(),

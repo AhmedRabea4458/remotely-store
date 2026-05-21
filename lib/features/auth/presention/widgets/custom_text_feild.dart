@@ -35,10 +35,10 @@ class CustomTextField extends StatelessWidget {
         decoration: InputDecoration(
           hintText: hint,
           hintStyle: AppTextStyles.body.copyWith(
-            color: AppColors.grayLight,
+            color: AppColors.lightestGrey,
           ),
           filled: true,
-          fillColor: AppColors.grayLight,
+          fillColor: AppColors.lightestGrey,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
             borderSide: BorderSide.none,

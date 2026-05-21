@@ -23,7 +23,7 @@ class PhoneTextField extends StatelessWidget {
           width: 80,
           alignment: Alignment.center,
           decoration: BoxDecoration(
-            color: AppColors.grayLight,
+            color: AppColors.lightestGrey,
             borderRadius: BorderRadius.circular(10),
           ),
           child: Text(
@@ -47,10 +47,10 @@ class PhoneTextField extends StatelessWidget {
               decoration: InputDecoration(
                 hintText: "Phone number",
                 hintStyle: AppTextStyles.body.copyWith(
-                  color: AppColors.grayLight,
+                  color: AppColors.lightestGrey,
                 ),
                 filled: true,
-                fillColor: AppColors.grayLight,
+                fillColor: AppColors.lightestGrey,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                   borderSide: BorderSide.none,

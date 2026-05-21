@@ -14,28 +14,41 @@ class CHeader extends StatelessWidget {
   final bool inDetailsView;
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return  Row(
       children: [
-        Text(
-          title,
-          style: AppTextStyles.headline.apply(
-            fontSizeDelta: inDetailsView ? -9 : 0,
+        Expanded(
+          child: Text(
+            title,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: AppTextStyles.headline.apply(
+              fontSizeDelta: inDetailsView ? -9 : 0,
+            ),
           ),
         ),
-        Spacer(),
-        inDetailsView
-            ? SizedBox()
-            : GestureDetector(
-              onTap: onTap,
-              child: Row(
-                children: [
-                  Text("See more", style: AppTextStyles.subTitle),
-                  SizedBox(width: 4),
-                  Icon(Icons.chevron_right, color: AppColors.deepGrey),
-                ],
-              ),
+
+        if (!inDetailsView) ...[
+          const SizedBox(width: 8),
+          GestureDetector(
+            onTap: onTap,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  "See more",
+                  style: AppTextStyles.subTitle,
+                ),
+                const SizedBox(width: 4),
+                Icon(
+                  Icons.chevron_right,
+                  color: AppColors.deepGrey,
+                ),
+              ],
             ),
+          ),
+        ],
       ],
     );
+
   }
 }

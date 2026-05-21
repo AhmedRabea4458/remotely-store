@@ -11,7 +11,8 @@ class ProductsImageCarouselSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: AppColors.whiteShade,
-      height: MediaQuery.heightOf(context) * 0.45,
+      height: MediaQuery.of(context).size.height
+          * 0.45,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

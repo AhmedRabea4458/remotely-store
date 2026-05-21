@@ -50,7 +50,7 @@ class HorizontalProductCard extends StatelessWidget {
                       color: AppColors.secondary,
                     ),
                   ),
-                  RateWidget(fontColor: AppColors.deepestGrey),
+                  RateWidget(fontColor: AppColors.grayDeeper),
                 ],
               ),
             ),

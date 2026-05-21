@@ -40,7 +40,7 @@ class _AutoImageSliderState extends State<AutoImageSlider> {
             Stack(
               children: [
                 SizedBox(
-                  height: MediaQuery.heightOf(context) * 0.3,
+                  height: MediaQuery.of(context).size.height * 0.3,
                   child: PageView.builder(
                     controller: cubit.controller,
                     itemCount: state.images.length,
